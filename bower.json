@@ -1,0 +1,20 @@
+{
+  "name": "rails_bower",
+  "authors": [
+    "Tatchagon <o_k_t@hotmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AdminLTE": "admin-lte#^2.3.7"
+  }
+}
