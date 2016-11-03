@@ -19,3 +19,12 @@
  *= require_tree .
  *= require_self
  */
+
+#error_explanation {
+	color: red;
+  ul {
+    text-align: left;
+    display: block;
+    color: red;
+  }
+}

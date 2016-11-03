@@ -10,4 +10,3 @@
 //= require flash
 //= require gentelella_index
 
-

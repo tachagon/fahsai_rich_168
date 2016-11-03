@@ -16,12 +16,12 @@
 
   </head>
 
+<% if user_signed_in? %>
+
   <body class="nav-md">
 
   <div class="container body">
-	  <% flash.each do |key, value| %>
-	      <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
-	  <% end %>
+    <%= render partial: "layouts/gentelella_flash" %>
   	<div class="main_container">
   		<%= render partial: "layouts/gentelella_sidebar" %>
   		<%= render partial: "layouts/gentelella_navbar" %>
@@ -35,4 +35,17 @@
     <%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => 'reload' %>
 
   </body>
+
+<% else %>
+
+  <body class="login">
+    <div>
+      <%= render partial: "layouts/gentelella_flash" %>
+      <%= yield %>
+    </div>
+    <%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => 'reload' %>
+  </body>
+
+<% end %>
+
 </html>
