@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require_relative('th_location')
+
 def create_roles
 	Role.create([
 		{name: 'admin', 			level: 1},
@@ -17,4 +19,50 @@ def create_roles
 	puts 'create roles success!'
 end
 
+def create_province(name)
+	Province.create(name: name)
+end
+
+def create_amphur(name, province)
+	Amphur.create(name: name, province: province)
+end
+
+def create_district(name, amphur, latitude, longitude)
+	District.create(name: name, amphur: amphur, latitude: latitude, longitude: longitude)
+end
+
+def create_or_find_zipcode(code)
+	zipcode = Zipcode.find_by_code(code)
+	if zipcode.nil?
+		return Zipcode.create(code: code)
+	else
+		return zipcode
+	end
+end
+
+def create_district_zipcode(district, zipcode)
+	DistrictZipcode.create(district: district, zipcode: zipcode)
+end
+
+def create_th_location
+	provinces = th_location()
+	count = 0
+	provinces.each do |province, amphurs|
+		province = create_province(province)
+		amphurs.each do |amphur, districts|
+			amphur = create_amphur(amphur, province)
+			districts.each do |district, data|
+				district = create_district(district, amphur, data[:latitude], data[:longitude])
+				data[:zipcode].each do |zipcode|
+					zipcode = create_or_find_zipcode(zipcode)
+					create_district_zipcode(district, zipcode)
+				end
+			end
+		end
+		count += 1
+		puts "create Province #{count}/77 #{(count/77.0*100.0).round(2)}%"
+	end
+end
+
 create_roles()
+create_th_location()
