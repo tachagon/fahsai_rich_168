@@ -64,5 +64,11 @@ def create_th_location
 	end
 end
 
+def create_user
+	User.create(email: "o_k_t@hotmail.com", password: "password")
+	puts "create user success!"
+end
+
 create_roles()
 create_th_location()
+create_user()
