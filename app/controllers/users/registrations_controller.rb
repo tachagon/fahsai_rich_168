@@ -63,7 +63,10 @@ end
   protected
 
     def after_login
-      redirect_to new_user_session_path unless user_signed_in?
+      unless user_signed_in?
+        flash["alert"] = 'คุณต้องเข้าสู่ระบบก่อนดำเนินการต่อ'
+        redirect_to :back
+      end
     end
 
   # If you have extra params to permit, append them to the sanitizer.
