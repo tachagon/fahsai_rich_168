@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107113736) do
+ActiveRecord::Schema.define(version: 20161112075519) do
 
   create_table "amphurs", force: :cascade do |t|
     t.string   "name"
@@ -71,8 +71,29 @@ ActiveRecord::Schema.define(version: 20161107113736) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "member_code"
+    t.string   "iden_number"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address"
+    t.integer  "district_id"
+    t.integer  "amphur_id"
+    t.integer  "province_id"
+    t.integer  "zipcode_id"
+    t.string   "phone_number"
+    t.string   "line_id"
+    t.integer  "role_id"
+    t.date     "birthday"
+    t.string   "gender"
+    t.index ["amphur_id"], name: "index_users_on_amphur_id"
+    t.index ["district_id"], name: "index_users_on_district_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["iden_number"], name: "index_users_on_iden_number", unique: true
+    t.index ["member_code"], name: "index_users_on_member_code", unique: true
+    t.index ["province_id"], name: "index_users_on_province_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
+    t.index ["zipcode_id"], name: "index_users_on_zipcode_id"
   end
 
   create_table "zipcodes", force: :cascade do |t|

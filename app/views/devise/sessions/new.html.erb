@@ -7,11 +7,11 @@
         <h1>Fahsai Rich 168</h1>
 
         <div>
-          <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: "Email" %>
+          <%= f.email_field :login, autofocus: true, class: 'form-control', placeholder: "อีเมล หรือรหัสสมาชิก" %>
         </div>
 
         <div>
-          <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "Password" %>
+          <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "รหัสผ่าน" %>
         </div>
 
         <% if devise_mapping.rememberable? -%>

@@ -1,9 +1,19 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: MyString
+admin:
+  name: admin
   level: 1
 
-two:
-  name: MyString
-  level: 1
+employee:
+  name: employee
+  level: 2
+
+wholesaler:
+  name: wholesaler
+  level: 3
+
+mobile:
+  name: mobile
+  level: 4
+
+member:
+  name: member
+  level: 5
