@@ -38,6 +38,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    adminlte2-rails (0.0.5)
     arel (7.1.4)
     autoprefixer-rails (6.5.1.1)
       execjs
@@ -67,9 +68,12 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
+    font-awesome-rails (4.7.0.0)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
+    ionicons-rails (2.0.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -173,12 +177,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  adminlte2-rails
   bootstrap-sass (~> 3.3.6)
   bower-rails
   byebug
   coffee-rails (~> 4.2)
   devise
   devise-i18n
+  font-awesome-rails
+  ionicons-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

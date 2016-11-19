@@ -16,36 +16,8 @@
 
   </head>
 
-<% if user_signed_in? %>
-
-  <body class="nav-md">
-
-  <div class="container body">
-    <%= render partial: "layouts/gentelella_flash" %>
-  	<div class="main_container">
-  		<%= render partial: "layouts/gentelella_sidebar" %>
-  		<%= render partial: "layouts/gentelella_navbar" %>
-  		<div class="right_col" role="main">
-  			<%= yield %>
-  		</div>
-  		<%= render partial: "layouts/gentelella_footer" %>
-  	</div>
-  </div>
-
-    <%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => 'reload' %>
-
+  <body>
+    <%= yield %>
   </body>
-
-<% else %>
-
-  <body class="login">
-    <div>
-      <%= render partial: "layouts/gentelella_flash" %>
-      <%= yield %>
-    </div>
-    <%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => 'reload' %>
-  </body>
-
-<% end %>
 
 </html>
