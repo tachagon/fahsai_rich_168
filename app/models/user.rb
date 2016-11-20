@@ -18,10 +18,55 @@ class User < ApplicationRecord
   	end
 	end
 
+  after_initialize :set_default_role, if: :new_record?
+
   belongs_to :district
   belongs_to :amphur
   belongs_to :province
   belongs_to :zipcode
   belongs_to :role
+
+  # ===================================================
+  # validation
+  # ===================================================
+
+  VALID_IDEN_NUMBER_REGEX = /\A\d{13,13}\z/
+  validates :iden_number,
+            presence: true,
+            length: {is: 13},
+            format: {with: VALID_IDEN_NUMBER_REGEX},
+            uniqueness: {case_sensitive: false}
+  validate :iden_number_format
+
+  # ===================================================
+  # privvate function
+  # ===================================================
+  private
+
+    def set_default_role
+      self.role = Role.member
+    end
+
+    def iden_number_format
+      unless self.iden_number.blank?
+        iden_number_i = self.iden_number.split(//).map(&:to_i)
+        x = 0
+
+        for i in 1..(iden_number_i.count-1)
+          x += (14-i)*iden_number_i[i-1]
+        end
+        x = x%11
+
+        if x <= 1
+          unless iden_number_i[iden_number_i.count-1] == (1-x)
+            errors.add(:iden_number, "รูปแบบไม่ถูกต้อง")
+          end
+        else
+          unless iden_number_i[iden_number_i.count-1] == (11-x)
+            errors.add(:iden_number, "รูปแบบไม่ถูกต้อง")
+          end
+        end
+      end
+    end
 
 end

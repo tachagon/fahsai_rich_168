@@ -12,8 +12,18 @@
 //
 
 
-//= require turbolinks
-//= require jquery.slimscroll
-//= require app
-//= require flash
 
+
+
+//= require bootstrap-datepicker
+//= require locales/bootstrap-datepicker.th
+//= require app
+//= require jquery.slimscroll
+//= require select2
+
+//= require flash
+//= require users
+
+$(document).ready(function () {
+	$('.datepicker').datepicker({language: 'th'});
+});

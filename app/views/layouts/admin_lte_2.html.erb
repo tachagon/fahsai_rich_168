@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title><%= full_title(yield(:title)) %></title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'head_application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => "reload" %>
+  <%= javascript_include_tag 'head_application', 'data-turbolinks-track' => "reload" %>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -27,14 +27,9 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-            Page Header
-            <small>Optional description</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-          </ol>
+          <%= yield(:page_header) %>
+
+          <%= yield(:breadcrumb) %>
         </section>
 
         <!-- Main content -->
@@ -117,7 +112,7 @@
 
     </div><!-- ./wrapper -->
 
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
   </body>
 
 <% else %>
@@ -125,7 +120,7 @@
   <body class="login-page">
     <%= render partial: "layouts/flash" %>
     <%= yield %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
   </body>
 
 <% end %>

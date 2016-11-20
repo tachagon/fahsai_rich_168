@@ -1,36 +1,132 @@
-<div class="login-box">
+<%= provide(:title, "เพิ่มสมาชิกใหม่") %>
+
+<% content_for :page_header do %>
+  <h1>เพิ่มสมาชิกใหม่</h1>
+<% end %>
+
+<%= provide(:breadcrumb, gen_breadcrumb({"หน้าแรก": root_path, "เพิ่มสมาชิกใหม่": "active"})) %>
+
+<div class="login-box" ng-controller="NewUserCtrl">
 
   <div class="login-box-body">
 
-    <h2 class="login-box-msg">Sign up</h2>
+    <h2 class="login-box-msg">เพิ่มสมาชิกใหม่</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 
       <div class="form-group">
-        <%= f.label :email %><br />
+        <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :iden_number %>
+        <%= f.text_field :iden_number, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address %>
+        <%= f.text_area :address, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :province %>
+        <select name="user[province_id]" id="user_province" class="form-control" ng-model="province_id" ng-change="sync_amphurs(province_id)">
+          <option value="0">กรุณาเลือกจังหวัด</option>
+          <option ng-repeat="province in provinces" value="{{province.id}}">
+            {{province.name}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :amphur %>
+        <select name="user[amphur_id]" id="user_amphur" class="form-control" ng-model="amphur_id" ng-change="sync_districts(amphur_id)">
+          <option ng-repeat="amphur in amphurs" value="{{amphur.id}}">
+            {{amphur.name}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :district %>
+        <select name="user[district_id]" id="user_district" class="form-control" ng-model="district_id" ng-change="sync_zipcodes(district_id)">
+          <option ng-repeat="district in districts" value="{{district.id}}">
+            {{district.name}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :zipcode %>
+        <select name="user[zipcode_id]" id="user_zipcode" class="form-control" ng-model="zipcode_id">
+          <option ng-repeat="zipcode in zipcodes" value="{{zipcode.id}}">
+            {{zipcode.code}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :line_id %>
+        <%= f.text_field :line_id, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :birthday %>
+        <input name="user[birthday]" class="datepicker form-control" data-provide="datepicker">
+      </div>
+
+      <div class="form-group">
+        <%= f.label :gender %>
+        <div class="radio">
+          <label>
+            <input type="radio" name="user[gender]" value="male">
+            ชาย
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="user[gender]" value="female">
+            หญิง
+          </label>
+        </div>
       </div>
 
       <div class="form-group">
         <%= f.label :password %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
+        <em>(อย่างน้อย <%= @minimum_password_length %> ตัวอักษร)</em>
+        <% end %>
         <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :password_confirmation %><br />
+        <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
       </div>
 
-        <%= f.submit "Sign up", class: 'btn btn-primary btn-block btn-flat' %>
+        <%= f.submit "เพิ่มสมาชิกใหม่", class: 'btn btn-primary btn-block btn-flat' %>
 
     <% end %>
 
     <div class="login-box-msg">
-      <%= render "devise/shared/links" %>
+      <%#= render "devise/shared/links" %>
     </div>
 
   </div>
