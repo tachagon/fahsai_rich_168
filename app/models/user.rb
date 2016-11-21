@@ -39,7 +39,33 @@ class User < ApplicationRecord
   validate :iden_number_format
 
   # ===================================================
-  # privvate function
+  # class function
+  # ===================================================
+
+  def self.gen_iden_number
+    iden_num = 12.times.map{Random.rand(1..8)}
+    x = 0
+
+    for i in 1..(iden_num.count)
+      x += (14-i) * iden_num[i-1]
+    end
+    x = x%11
+    n13 = -1
+    if x <= 1
+      n13 = 1 - x
+    else
+      n13 = 11 - x
+    end
+    iden_num << n13
+    return iden_num.join
+  end
+
+  # ===================================================
+  # public function
+  # ===================================================
+
+  # ===================================================
+  # private function
   # ===================================================
   private
 
