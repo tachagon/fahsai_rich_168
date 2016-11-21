@@ -65,7 +65,26 @@ def create_th_location
 end
 
 def create_user
-	User.create(email: "o_k_t@hotmail.com", password: "password")
+	province = Province.first
+	amphur = province.amphurs.first
+	district = amphur.districts.first
+	zipcode = district.zipcodes.first
+	User.create(
+		email: "o_k_t@hotmail.com",
+		password: "password",
+		iden_number: "1102001936122",
+		first_name: "Tatchagon",
+		last_name: "Koonkoei",
+		address: "111/1 ม.3",
+		district: district,
+		amphur: amphur,
+		province: province,
+		zipcode: zipcode,
+		phone_number: "0826810461",
+		line_id: "tachagon",
+		birthday: "06/02/1993",
+		gender: "male"
+		)
 	puts "create user success!"
 end
 

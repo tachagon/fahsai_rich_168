@@ -51,3 +51,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "bower-rails"
 gem 'devise'
 gem 'devise-i18n'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'adminlte2-rails'
+gem "font-awesome-rails"
+gem 'ionicons-rails'
+gem 'angularjs-rails', '~> 1.5.8'
+gem "select2-rails"

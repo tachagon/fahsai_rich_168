@@ -1,25 +1,27 @@
-<div class="login_wrapper">
-    <section class="login_content">
+<div class="login-box">
 
-			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <div class="login-logo">
+    <a href="/"><b>Admin</b>LTE</a>
+  </div>
 
-				<h1 style="font-size: 1.7em;">Forgot your password?</h1>
+  <div class="login-box-body">
 
-			  <%= devise_error_messages! %>
+	<h3 class="login-box-msg">Forgot your password?</h3>
 
-			  <div>
-			    <%= f.label :email %><br />
-			    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-			  </div>
+	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+	  <%= devise_error_messages! %>
 
-			  <div>
-			    <%= f.submit "Send me reset password instructions", class: 'btn btn-default btn-block', style: 'margin-left: 0;' %>
-			  </div>
-			<% end %>
+	  <div class="form-group">
+	    <%= f.label :email %><br />
+	    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+	  </div>
 
-			<%- if controller_name != 'sessions' %>
-			  <%= link_to "Log in", new_session_path(resource_name) %><br />
-			<% end -%>
+	  <%= f.submit "Send me reset password instructions", class: 'btn btn-primary btn-block btn-flat' %>
+	<% end %>
 
-    </section>
+	<div class="login-box-msg">
+		<%= render "devise/shared/links" %>
+	</div>
+
+	</div>
 </div>
