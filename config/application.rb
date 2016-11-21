@@ -14,5 +14,9 @@ module RailsBower
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
 
+    config.time_zone = "Bangkok"
+
+    config.i18n.default_locale = :th
+
   end
 end

@@ -1,0 +1,19 @@
+admin:
+  name: admin
+  level: 1
+
+employee:
+  name: employee
+  level: 2
+
+wholesaler:
+  name: wholesaler
+  level: 3
+
+mobile:
+  name: mobile
+  level: 4
+
+member:
+  name: member
+  level: 5

@@ -10,7 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103090356) do
+ActiveRecord::Schema.define(version: 20161112075519) do
+
+  create_table "amphurs", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "province_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["name", "province_id"], name: "index_amphurs_on_name_and_province_id", unique: true
+    t.index ["name"], name: "index_amphurs_on_name"
+    t.index ["province_id"], name: "index_amphurs_on_province_id"
+  end
+
+  create_table "district_zipcodes", force: :cascade do |t|
+    t.integer  "district_id"
+    t.integer  "zipcode_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["district_id", "zipcode_id"], name: "index_district_zipcodes_on_district_id_and_zipcode_id", unique: true
+    t.index ["district_id"], name: "index_district_zipcodes_on_district_id"
+    t.index ["zipcode_id"], name: "index_district_zipcodes_on_zipcode_id"
+  end
+
+  create_table "districts", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "amphur_id"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amphur_id"], name: "index_districts_on_amphur_id"
+    t.index ["name", "amphur_id"], name: "index_districts_on_name_and_amphur_id", unique: true
+    t.index ["name"], name: "index_districts_on_name"
+  end
+
+  create_table "provinces", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_provinces_on_name", unique: true
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -25,8 +71,36 @@ ActiveRecord::Schema.define(version: 20161103090356) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "member_code"
+    t.string   "iden_number"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address"
+    t.integer  "district_id"
+    t.integer  "amphur_id"
+    t.integer  "province_id"
+    t.integer  "zipcode_id"
+    t.string   "phone_number"
+    t.string   "line_id"
+    t.integer  "role_id"
+    t.date     "birthday"
+    t.string   "gender"
+    t.index ["amphur_id"], name: "index_users_on_amphur_id"
+    t.index ["district_id"], name: "index_users_on_district_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["iden_number"], name: "index_users_on_iden_number", unique: true
+    t.index ["member_code"], name: "index_users_on_member_code", unique: true
+    t.index ["province_id"], name: "index_users_on_province_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
+    t.index ["zipcode_id"], name: "index_users_on_zipcode_id"
+  end
+
+  create_table "zipcodes", force: :cascade do |t|
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_zipcodes_on_code", unique: true
   end
 
 end
