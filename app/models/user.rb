@@ -25,6 +25,7 @@ class User < ApplicationRecord
   belongs_to :province
   belongs_to :zipcode
   belongs_to :role
+  has_many :order
 
   # ===================================================
   # validation

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112075519) do
+ActiveRecord::Schema.define(version: 20161122144143) do
 
   create_table "amphurs", force: :cascade do |t|
     t.string   "name"
@@ -44,6 +44,40 @@ ActiveRecord::Schema.define(version: 20161112075519) do
     t.index ["name"], name: "index_districts_on_name"
   end
 
+  create_table "order_products", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "order_id"
+    t.integer  "quantity"
+    t.float    "total_price"
+    t.float    "total_pv"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "purchaser_id"
+    t.integer  "saler_id"
+    t.float    "total_price"
+    t.float    "total_pv"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "price"
+    t.float    "pv"
+    t.integer  "quantity"
+    t.string   "unit"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "provinces", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -56,6 +90,16 @@ ActiveRecord::Schema.define(version: 20161112075519) do
     t.integer  "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_stocks_on_product_id"
+    t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

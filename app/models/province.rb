@@ -1,3 +1,6 @@
 class Province < ApplicationRecord
-	has_many :amphurs
+	has_many :users
+  has_many :amphurs
+  
+  validates :name, :presence => true
 end
