@@ -64,6 +64,26 @@ class User < ApplicationRecord
   # public function
   # ===================================================
 
+  def admin?
+    self.role == Role.admin
+  end
+
+  def employee?
+    self.role == Role.employee
+  end
+
+  def wholesaler?
+    self.role == Role.wholesaler
+  end
+
+  def mobile?
+    self.role == Role.mobile
+  end
+  
+  def member?
+    self.role == Role.member
+  end
+
   # ===================================================
   # private function
   # ===================================================
