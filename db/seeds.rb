@@ -88,6 +88,17 @@ def create_user
 	puts "create user success!"
 end
 
+def create_positions
+	Position.create([
+		{name: 'no position', 			benefit_layer: 0, 	min_pv: 0},
+		{name: 'silver', 	benefit_layer: 5, 	min_pv: 30},
+		{name: 'gold', 		benefit_layer: 10, 	min_pv: 150},
+		{name: 'diamon', 	benefit_layer: 15, 	min_pv: 300}
+	])
+	puts 'create positions success!'
+end
+
 create_roles()
 create_th_location()
 create_user()
+create_positions()

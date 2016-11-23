@@ -1,11 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  benefit_layer: 1
-  min_pv: 1.5
+no_position:
+  name: no position
+  benefit_layer: 0
+  min_pv: 0
 
-two:
-  name: MyString
-  benefit_layer: 1
-  min_pv: 1.5
+silver:
+  name: silver
+  benefit_layer: 5
+  min_pv: 30
+
+gold:
+  name: gold
+  benefit_layer: 10
+  min_pv: 150
+
+diamon:
+  name: diamon
+  benefit_layer: 15
+  min_pv: 300
