@@ -39,6 +39,30 @@ class User < ApplicationRecord
             uniqueness: {case_sensitive: false}
   validate :iden_number_format
 
+  validates :first_name,
+            length: {maximum: 100},
+            presence: true
+
+  validates :last_name,
+            length: {maximum: 100},
+            presence: true
+
+  validates :address,
+            length: {maximum: 255},
+            presence: true
+
+  VALID_PHONE_NUMBER_REGEX = /\A0\d{8,}\z/
+  validates :phone_number,
+            format: {with: VALID_PHONE_NUMBER_REGEX},
+            length: {in: 9..10},
+            presence: true
+  
+  validates :birthday, presence: true
+
+  validates :gender,
+            inclusion: {in: %w(male female)},
+            presence: true
+
   # ===================================================
   # class function
   # ===================================================
