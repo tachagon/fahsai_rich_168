@@ -19,6 +19,7 @@ class User < ApplicationRecord
 	end
 
   after_initialize :set_default_role, if: :new_record?
+  after_create :gen_member_code
 
   belongs_to :district
   belongs_to :amphur
@@ -37,6 +38,30 @@ class User < ApplicationRecord
             format: {with: VALID_IDEN_NUMBER_REGEX},
             uniqueness: {case_sensitive: false}
   validate :iden_number_format
+
+  validates :first_name,
+            length: {maximum: 100},
+            presence: true
+
+  validates :last_name,
+            length: {maximum: 100},
+            presence: true
+
+  validates :address,
+            length: {maximum: 255},
+            presence: true
+
+  VALID_PHONE_NUMBER_REGEX = /\A0\d{8,}\z/
+  validates :phone_number,
+            format: {with: VALID_PHONE_NUMBER_REGEX},
+            length: {in: 9..10},
+            presence: true
+  
+  validates :birthday, presence: true
+
+  validates :gender,
+            inclusion: {in: %w(male female)},
+            presence: true
 
   # ===================================================
   # class function
@@ -64,10 +89,36 @@ class User < ApplicationRecord
   # public function
   # ===================================================
 
+  def admin?
+    self.role == Role.admin
+  end
+
+  def employee?
+    self.role == Role.employee
+  end
+
+  def wholesaler?
+    self.role == Role.wholesaler
+  end
+
+  def mobile?
+    self.role == Role.mobile
+  end
+  
+  def member?
+    self.role == Role.member
+  end
+
   # ===================================================
   # private function
   # ===================================================
   private
+
+    def gen_member_code
+      offset = 1000
+      self.member_code = sprintf('%06d', self.id + offset)
+      self.save
+    end
 
     def set_default_role
       self.role = Role.member
