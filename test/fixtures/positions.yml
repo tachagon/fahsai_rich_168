@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+no_position:
+  name: no position
+  benefit_layer: 0
+  min_pv: 0
+
+silver:
+  name: silver
+  benefit_layer: 5
+  min_pv: 30
+
+gold:
+  name: gold
+  benefit_layer: 10
+  min_pv: 150
+
+diamon:
+  name: diamon
+  benefit_layer: 15
+  min_pv: 300
