@@ -19,6 +19,7 @@ class User < ApplicationRecord
 	end
 
   after_initialize :set_default_role, if: :new_record?
+  after_create :gen_member_code
 
   belongs_to :district
   belongs_to :amphur
@@ -88,6 +89,12 @@ class User < ApplicationRecord
   # private function
   # ===================================================
   private
+
+    def gen_member_code
+      offset = 1000
+      self.member_code = sprintf('%06d', self.id + offset)
+      self.save
+    end
 
     def set_default_role
       self.role = Role.member
