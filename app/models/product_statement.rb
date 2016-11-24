@@ -1,0 +1,2 @@
+class ProductStatement < ApplicationRecord
+end

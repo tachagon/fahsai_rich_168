@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122144143) do
+ActiveRecord::Schema.define(version: 20161124092924) do
 
   create_table "amphurs", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20161122144143) do
     t.index ["name", "province_id"], name: "index_amphurs_on_name_and_province_id", unique: true
     t.index ["name"], name: "index_amphurs_on_name"
     t.index ["province_id"], name: "index_amphurs_on_province_id"
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.integer  "role_id"
+    t.integer  "product_id"
+    t.float    "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_discounts_on_product_id"
+    t.index ["role_id"], name: "index_discounts_on_role_id"
   end
 
   create_table "district_zipcodes", force: :cascade do |t|
@@ -67,6 +77,18 @@ ActiveRecord::Schema.define(version: 20161122144143) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "product_statements", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "statement_id"
+    t.integer  "quantity"
+    t.float    "total_price"
+    t.float    "total_pv"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["product_id"], name: "index_product_statements_on_product_id"
+    t.index ["statement_id"], name: "index_product_statements_on_statement_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -90,6 +112,15 @@ ActiveRecord::Schema.define(version: 20161122144143) do
     t.integer  "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "statements", force: :cascade do |t|
+    t.integer  "giver_id"
+    t.integer  "receiver_id"
+    t.float    "total_price"
+    t.float    "total_pv"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "stocks", force: :cascade do |t|
