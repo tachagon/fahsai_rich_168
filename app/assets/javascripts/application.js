@@ -25,5 +25,8 @@
 //= require users
 
 $(document).ready(function () {
-	$('.datepicker').datepicker({language: 'th'});
+	$('.datepicker').datepicker({
+		language: 'th',
+		format: 'dd/mm/yyyy'
+	});
 });

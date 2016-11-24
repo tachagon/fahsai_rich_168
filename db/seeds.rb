@@ -82,7 +82,7 @@ def create_user
 		zipcode: zipcode,
 		phone_number: "0826810461",
 		line_id: "tachagon",
-		birthday: "06/02/1993",
+		birthday: "02/06/1993",
 		gender: "male"
 		)
 	puts "create user success!"

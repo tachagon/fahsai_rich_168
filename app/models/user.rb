@@ -56,7 +56,7 @@ class User < ApplicationRecord
             format: {with: VALID_PHONE_NUMBER_REGEX},
             length: {in: 9..10},
             presence: true
-  
+
   validates :birthday, presence: true
 
   validates :gender,
@@ -104,7 +104,7 @@ class User < ApplicationRecord
   def mobile?
     self.role == Role.mobile
   end
-  
+
   def member?
     self.role == Role.member
   end
